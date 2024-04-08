@@ -5,23 +5,23 @@ clear
 close all
 clc
 
-% % PARAMS - SLIPPING DEMO
-% p.g = 9.81; % m s^-2
-% p.R = .1080; % m
-% p.m = 6.35; % kg
-% p.I1 = .001; % kg m^2
-% p.I2 = .001; % kg m^2
-% p.I3 = .03; % kg m^2
-% 
-% % INITS - SLIPPING DEMO
-% x0 = 0; y0 = 0; z0 = p.R; % m
-% x_dot0 = 8; y_dot0 = -.5; z_dot0 = 0;% m/s
-% phi0 = deg2rad(90); theta0 = deg2rad(90); psi0 = deg2rad(0); % rad
-% phi_dot0 = 0; theta_dot0 = 0; psi_dot0 = -30; % rad/s
-% position0 = [x0 y0 z0 x_dot0 y_dot0 z_dot0]';
-% attitude0 = [phi0 theta0 psi0 phi_dot0 theta_dot0 psi_dot0]';
-% X0 = [position0;attitude0];
-% fsymbolic = slippingEL();
+% PARAMS - SLIPPING DEMO
+p.g = 9.81; % m s^-2
+p.R = .1080; % m
+p.m = 6.35; % kg
+p.I1 = .001; % kg m^2
+p.I2 = .001; % kg m^2
+p.I3 = .03; % kg m^2
+
+% INITS - SLIPPING DEMO
+x0 = 0; y0 = 0; z0 = p.R; % m
+x_dot0 = 8; y_dot0 = -.5; z_dot0 = 0;% m/s
+phi0 = deg2rad(90); theta0 = deg2rad(90); psi0 = deg2rad(0); % rad
+phi_dot0 = 0; theta_dot0 = 0; psi_dot0 = -30; % rad/s
+position0 = [x0 y0 z0 x_dot0 y_dot0 z_dot0]';
+attitude0 = [phi0 theta0 psi0 phi_dot0 theta_dot0 psi_dot0]';
+X0 = [position0;attitude0];
+fsymbolic = slippingEL();
 
 %% PARAmS BIGGER BALL
 % p.g = 9.81; % m s^-2
@@ -42,27 +42,27 @@ clc
 % fsymbolic = slippingEL();
 
 %% PARAMS - ROLLING DEMO
-p.g = 9.81; % m s^-2
-p.R = .3080; % m
-p.m = 6.35; % kg
-p.I1 = .05; % kg m^2
-p.I2 = .05; % kg m^2
-p.I3 = .05; % kg m^2
-
-% INITS - ROLLING DEMO
-x0 = 0; y0 = .4; z0 = p.R; % m
-x_dot0 = 3; y_dot0 = -.2; z_dot0 = 0;% m/s
-phi0 = deg2rad(50); theta0 = deg2rad(90); psi0 = deg2rad(0); % rad
-wQe = [0 cos(phi0) sin(theta0)*sin(phi0);
-       0 sin(phi0) -sin(theta0)*cos(phi0);
-       1 0         cos(theta0)];
-omega_d = [-y_dot0/p.R;x_dot0/p.R;0];
-e_dot = wQe\omega_d;
-phi_dot0 = e_dot(1); theta_dot0 = e_dot(2); psi_dot0 = e_dot(3); % rad/s
-position0 = [x0 y0 z0 x_dot0 y_dot0 z_dot0]';
-attitude0 = [phi0 theta0 psi0 phi_dot0 theta_dot0 psi_dot0]';
-X0 = [position0;attitude0];
-fsymbolic = rollingEL();
+% p.g = 9.81; % m s^-2
+% p.R = .3080; % m
+% p.m = 6.35; % kg
+% p.I1 = .05; % kg m^2
+% p.I2 = .05; % kg m^2
+% p.I3 = .05; % kg m^2
+% 
+% % INITS - ROLLING DEMO
+% x0 = 0; y0 = .4; z0 = p.R; % m
+% x_dot0 = 3; y_dot0 = -.2; z_dot0 = 0;% m/s
+% phi0 = deg2rad(50); theta0 = deg2rad(90); psi0 = deg2rad(0); % rad
+% wQe = [0 cos(phi0) sin(theta0)*sin(phi0);
+%        0 sin(phi0) -sin(theta0)*cos(phi0);
+%        1 0         cos(theta0)];
+% omega_d = [-y_dot0/p.R;x_dot0/p.R;0];
+% e_dot = wQe\omega_d;
+% phi_dot0 = e_dot(1); theta_dot0 = e_dot(2); psi_dot0 = e_dot(3); % rad/s
+% position0 = [x0 y0 z0 x_dot0 y_dot0 z_dot0]';
+% attitude0 = [phi0 theta0 psi0 phi_dot0 theta_dot0 psi_dot0]';
+% X0 = [position0;attitude0];
+% fsymbolic = rollingEL();
 
 %% TIME
 step = 0.01; tend = 2.5; % s
@@ -95,7 +95,7 @@ for i = 1:len
 end
 
 % ANIMATE
-mode = 2; % 1 = animation, 2 = animation + record & save it
+mode = 1; % 1 = animation, 2 = animation + record & save it
 hgt_animate(X,step,p,mode)
 
 function Xdot = bowlingballEL(t,X,p,fsymbolic)
